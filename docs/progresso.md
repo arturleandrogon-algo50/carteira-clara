@@ -1,6 +1,6 @@
 # Progresso
 
-Última atualização: 2026-11-03
+Última atualização: 2026-11-03 (etapa 2 em andamento)
 
 ## Etapa 1: Fundação
 
@@ -34,7 +34,21 @@
   (não existe pacote do Maven no winget).
 - Se o mesmo erro de certificado aparecer em outras ferramentas, a causa é a mesma.
 
+## Etapa 2: Domínio (em andamento)
+
+Java puro, sem Spring, com testes unitários.
+
+### Pronto
+
+- [x] `Dinheiro` (`domain/Dinheiro.java`) com 10 testes (`DinheiroTest`).
+- [x] `mvn test`: BUILD SUCCESS, **12 testes passando** (2 da API + 10 do `Dinheiro`).
+
+### Falta
+
+- [ ] `Ativo`
+- [ ] `Posicao`
+- [ ] Cálculo de lucro/prejuízo, com testes
+
 ## Próximo passo
 
-Etapa 2: domínio (`Ativo`, `Posicao`, `Dinheiro` e cálculo de lucro/prejuízo),
-em Java puro, com testes unitários.
+Continuar a etapa 2: `Ativo`, `Posicao` e o cálculo de lucro/prejuízo.
