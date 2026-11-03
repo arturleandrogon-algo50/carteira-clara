@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: carteira-clara
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/carteiraclara}
+    username: ${DB_USER:carteira}
+    password: ${DB_PASSWORD:carteira}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # O schema é gerenciado só pelo Flyway. O Hibernate apenas confere.
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+server:
+  port: ${PORT:8080}
