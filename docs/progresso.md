@@ -1,6 +1,6 @@
 # Progresso
 
-Última atualização: 2026-11-03 (etapa 2 em andamento)
+Última atualização: 2026-11-03 (etapa 2 em andamento, 25 testes)
 
 ## Etapa 1: Fundação
 
@@ -41,14 +41,17 @@ Java puro, sem Spring, com testes unitários.
 ### Pronto
 
 - [x] `Dinheiro` (`domain/Dinheiro.java`) com 10 testes (`DinheiroTest`).
-- [x] `mvn test`: BUILD SUCCESS, **12 testes passando** (2 da API + 10 do `Dinheiro`).
+- [x] `Posicao` (`domain/Posicao.java`) com 13 testes (`PosicaoTest`), já com
+      `lucroOuPrejuizo(precoAtual)` e cálculo percentual.
+- [x] `mvn test`: BUILD SUCCESS, **25 testes passando** (2 API + 10 `Dinheiro` + 13 `Posicao`).
 
 ### Falta
 
-- [ ] `Ativo`
-- [ ] `Posicao`
-- [ ] Cálculo de lucro/prejuízo, com testes
+- [ ] `Ativo` (não existe como classe própria ainda; conferir se `Posicao` já o
+      cobre ou se vale criar).
+- [ ] Revisar o código da etapa 2 e marcá-la como concluída no README (roadmap).
 
 ## Próximo passo
 
-Continuar a etapa 2: `Ativo`, `Posicao` e o cálculo de lucro/prejuízo.
+Fechar a etapa 2 (`Ativo` e revisão) e seguir para a etapa 3: persistência e API
+de posições.
