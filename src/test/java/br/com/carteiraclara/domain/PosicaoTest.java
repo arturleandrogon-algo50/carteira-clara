@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class PosicaoTest {
 
-    private final Posicao meioEth = Posicao.de("ETH", "0.5", "10000");
+    private final Posicao meioEth = Posicao.de(Ativo.ETHEREUM, "0.5", "10000");
 
     @Test
     void calculaCustoTotal() {
@@ -45,7 +45,7 @@ class PosicaoTest {
 
     @Test
     void aceitaQuantidadeFracionadaDeCripto() {
-        var poeira = Posicao.de("BTC", "0.00012345", "500000");
+        var poeira = Posicao.de(Ativo.BITCOIN, "0.00012345", "500000");
 
         assertThat(poeira.quantidade()).hasToString("0.00012345");
         assertThat(poeira.custoTotal()).isEqualTo(Dinheiro.de("61.72")); // 61,725 -> HALF_EVEN (2 é par)
@@ -53,7 +53,7 @@ class PosicaoTest {
 
     @Test
     void quantidadeZeroNaoTemCustoNemVariacao() {
-        var vazia = Posicao.de("ETH", "0", "10000");
+        var vazia = Posicao.de(Ativo.ETHEREUM, "0", "10000");
 
         assertThat(vazia.custoTotal()).isEqualTo(Dinheiro.zero());
         assertThat(vazia.lucroOuPrejuizo(new BigDecimal("12000"))).isEqualTo(Dinheiro.zero());
@@ -66,20 +66,15 @@ class PosicaoTest {
     }
 
     @Test
-    void normalizaSimbolo() {
-        assertThat(Posicao.de("  eth ", "1", "1").simbolo()).isEqualTo("ETH");
-    }
-
-    @Test
     void recusaQuantidadeNegativa() {
-        assertThatThrownBy(() -> Posicao.de("ETH", "-1", "10000"))
+        assertThatThrownBy(() -> Posicao.de(Ativo.ETHEREUM, "-1", "10000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("quantidade");
     }
 
     @Test
     void recusaPrecoMedioNegativo() {
-        assertThatThrownBy(() -> Posicao.de("ETH", "1", "-5"))
+        assertThatThrownBy(() -> Posicao.de(Ativo.ETHEREUM, "1", "-5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("preço médio");
     }
@@ -92,9 +87,9 @@ class PosicaoTest {
     }
 
     @Test
-    void recusaSimboloVazioOuNulo() {
-        assertThatThrownBy(() -> Posicao.de(" ", "1", "1")).isInstanceOf(IllegalArgumentException.class);
+    void recusaAtivoNulo() {
         assertThatThrownBy(() -> new Posicao(null, BigDecimal.ONE, BigDecimal.ONE))
-                .isInstanceOf(NullPointerException.class);
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining("ativo");
     }
 }

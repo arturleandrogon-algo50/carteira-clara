@@ -11,31 +11,27 @@ import java.util.Objects;
  * decimais (criptomoedas são fracionadas, como 0,00012345 BTC). Só os valores
  * totais viram {@link Dinheiro}, com 2 casas. Java puro, sem Spring.
  */
-public record Posicao(String simbolo, BigDecimal quantidade, BigDecimal precoMedio) {
+public record Posicao(Ativo ativo, BigDecimal quantidade, BigDecimal precoMedio) {
 
     private static final int CASAS_CRIPTO = 8;
     private static final BigDecimal CEM = new BigDecimal("100");
 
     public Posicao {
-        Objects.requireNonNull(simbolo, "O símbolo não pode ser nulo");
+        Objects.requireNonNull(ativo, "O ativo não pode ser nulo");
         Objects.requireNonNull(quantidade, "A quantidade não pode ser nula");
         Objects.requireNonNull(precoMedio, "O preço médio não pode ser nulo");
-        if (simbolo.isBlank()) {
-            throw new IllegalArgumentException("O símbolo não pode ser vazio");
-        }
         if (quantidade.signum() < 0) {
             throw new IllegalArgumentException("A quantidade não pode ser negativa");
         }
         if (precoMedio.signum() < 0) {
             throw new IllegalArgumentException("O preço médio não pode ser negativo");
         }
-        simbolo = simbolo.trim().toUpperCase();
         quantidade = quantidade.setScale(CASAS_CRIPTO, RoundingMode.HALF_EVEN);
         precoMedio = precoMedio.setScale(CASAS_CRIPTO, RoundingMode.HALF_EVEN);
     }
 
-    public static Posicao de(String simbolo, String quantidade, String precoMedio) {
-        return new Posicao(simbolo, new BigDecimal(quantidade), new BigDecimal(precoMedio));
+    public static Posicao de(Ativo ativo, String quantidade, String precoMedio) {
+        return new Posicao(ativo, new BigDecimal(quantidade), new BigDecimal(precoMedio));
     }
 
     /** Quanto foi gasto no total: quantidade x preço médio. */
