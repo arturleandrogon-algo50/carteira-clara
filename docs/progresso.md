@@ -1,6 +1,6 @@
 # Progresso
 
-Última atualização: 2026-11-03 (etapa 2 em andamento, 25 testes)
+Última atualização: 2026-11-05 (etapa 2 concluída, 29 testes)
 
 ## Etapa 1: Fundação
 
@@ -34,24 +34,20 @@
   (não existe pacote do Maven no winget).
 - Se o mesmo erro de certificado aparecer em outras ferramentas, a causa é a mesma.
 
-## Etapa 2: Domínio (em andamento)
+## Etapa 2: Domínio (concluída)
 
 Java puro, sem Spring, com testes unitários.
 
 ### Pronto
 
 - [x] `Dinheiro` (`domain/Dinheiro.java`) com 10 testes (`DinheiroTest`).
-- [x] `Posicao` (`domain/Posicao.java`) com 13 testes (`PosicaoTest`), já com
-      `lucroOuPrejuizo(precoAtual)` e cálculo percentual.
-- [x] `mvn test`: BUILD SUCCESS, **25 testes passando** (2 API + 10 `Dinheiro` + 13 `Posicao`).
-
-### Falta
-
-- [ ] `Ativo` (não existe como classe própria ainda; conferir se `Posicao` já o
-      cobre ou se vale criar).
-- [ ] Revisar o código da etapa 2 e marcá-la como concluída no README (roadmap).
+- [x] `TipoAtivo` (`domain/TipoAtivo.java`) e `Ativo` (`domain/Ativo.java`), com BTC
+      e ETH, com 5 testes (`AtivoTest`).
+- [x] `Posicao` (`domain/Posicao.java`) com lucro, prejuízo e variação percentual,
+      com 12 testes (`PosicaoTest`).
+- [x] `mvn test`: BUILD SUCCESS, **29 testes passando** (2 API + 5 `Ativo` +
+      10 `Dinheiro` + 12 `Posicao`).
 
 ## Próximo passo
 
-Fechar a etapa 2 (`Ativo` e revisão) e seguir para a etapa 3: persistência e API
-de posições.
+Etapa 3: persistência no PostgreSQL com Flyway e API REST de posições.

@@ -11,7 +11,7 @@ mudou e quais caminhos existem. **A decisão é sempre do usuário.**
 
 ## Status
 
-Em construção. Fundação pronta (etapa 1 de 8). Veja o [roadmap](#roadmap).
+Em construção. Domínio pronto (etapa 2 de 8).
 
 ## Como rodar
 
@@ -64,7 +64,7 @@ Planejado: Spring AI, Testcontainers, WireMock, Resilience4j, OpenAPI.
 ## Roadmap
 
 - [x] 1. Fundação: projeto, Postgres no Docker, CI
-- [ ] 2. Domínio: ativo, posição, lucro e prejuízo, com testes
+- [x] 2. Domínio: ativo, posição, lucro e prejuízo, com testes
 - [ ] 3. Persistência e API de posições
 - [ ] 4. Preços reais (CoinGecko) com cache e tratamento de limite
 - [ ] 5. Histórico de cotações agendado
