@@ -45,4 +45,17 @@ class AtivoTest {
         assertThatThrownBy(() -> new Ativo("XYZ", "Algo", null))
                 .isInstanceOf(NullPointerException.class);
     }
+
+    @Test
+    void doCatalogoEncontraPeloSimbolo() {
+        assertThat(Ativo.doCatalogo("BTC")).isEqualTo(Ativo.BITCOIN);
+        assertThat(Ativo.doCatalogo(" eth ")).isEqualTo(Ativo.ETHEREUM);
+    }
+
+    @Test
+    void doCatalogoRecusaAtivoDesconhecido() {
+        assertThatThrownBy(() -> Ativo.doCatalogo("XYZ"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("XYZ");
+    }
 }
